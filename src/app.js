@@ -3,6 +3,9 @@ const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const app = express()
+const router = require('./interfaces/api/router')
+const setResponse = require('./interfaces/middlewares/setResponse')
+const connectDB = require('./config/db')
 
 const PORT = process.env.PORT || 3000
 
@@ -12,11 +15,13 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cors())
 app.use(helmet())
+app.use(setResponse)
+
+// Conexión a la base de datos
+connectDB()
 
 // Definición de rutas
-app.use('/api-notes', (request, response) => {
-  return response.send({ data: 'api-notes' })
-})
+app.use('/api-notes', router)
 
 // Manejo de errores
 app.use((err, req, res, next) => {
