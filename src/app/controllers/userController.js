@@ -1,20 +1,26 @@
 const userServices = require('../services/userServices')
+const { httpHandleError } = require('../../utils/httpErrorHandler')
+const { StatusCodes } = require('http-status-codes')
 
 const register = async (request, response) => {
   try {
     const { username, email, password } = request.body
     const newUser = await userServices.createUser(username, email, password)
 
-    return response.json({
+    return response.status(StatusCodes.CREATED).json({
       success: true,
-      message: 'Usuario registrado exitosamente',
+      message: 'Successfully registered user',
       data: { user: newUser }
     })
   } catch (error) {
-    console.error(error)
-    return response
-      .status(500)
-      .json({ success: false, message: 'Error en el servidor' })
+    const handledError = httpHandleError(error)
+    return response.status(handledError.statusCode).json({
+      success: false,
+      message: handledError.message,
+      data: {
+        name: handledError.name
+      }
+    })
   }
 }
 

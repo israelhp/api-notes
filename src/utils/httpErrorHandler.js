@@ -1,6 +1,6 @@
 const errorCodes = require('./errorCodes')
 
-const httpErrorHandler = (error) => {
+const httpHandleError = (error) => {
   const errorCode = error.code || 500
   const errorDetails =
     Object.values(errorCodes).find((details) => details.code === errorCode) ||
@@ -13,4 +13,4 @@ const httpErrorHandler = (error) => {
   }
 }
 
-module.exports = { httpErrorHandler }
+module.exports = { httpHandleError }
