@@ -17,6 +17,22 @@ class UserRepository {
     return UserModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
   }
 
+  static updateUser = async (username, updatedUserData) => {
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { username },
+      { $set: updatedUserData },
+      { new: true } // Devuelve el documento actualizado
+    )
+
+    if (!updatedUser) {
+      const error = new Error('Failed to update user')
+      error.code = 110011
+      throw error
+    }
+
+    return updatedUser
+  }
+
   static deleteUserById = async (userId) => {
     return UserModel.findByIdAndDelete(userId)
   }

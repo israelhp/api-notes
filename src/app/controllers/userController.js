@@ -24,4 +24,29 @@ const register = async (request, response) => {
   }
 }
 
-module.exports = { register }
+const updateUser = async (request, response) => {
+  try {
+    const { username } = request.params
+    const updatedUserData = request.body
+
+    const updatedUser = await userServices.updateUser(username, updatedUserData)
+
+    return response.json({
+      success: true,
+      message: 'User updated successfully',
+      data: { user: updatedUser }
+    })
+  } catch (error) {
+    const handledError = httpHandleError(error)
+    return response.status(handledError.statusCode).json({
+      success: false,
+      message: handledError.message,
+      data: {
+        name: handledError.name,
+        error
+      }
+    })
+  }
+}
+
+module.exports = { register, updateUser }

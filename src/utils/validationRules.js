@@ -2,18 +2,19 @@
 const { body } = require('express-validator')
 
 // Reglas de validación para el registro de usuario
-const registrationValidationRules = [
-  body('username')
-    .trim()
-    .notEmpty()
-    .withMessage('El nombre de usuario es obligatorio'),
-  body('email')
-    .trim()
-    .isEmail()
-    .withMessage('El correo electrónico no es válido'),
+const userValidationRules = [
+  body('username').trim().notEmpty().withMessage('Username is required'),
+  body('email').trim().isEmail().withMessage('The email is not valid'),
   body('password')
     .isLength({ min: 6 })
-    .withMessage('La contraseña debe tener al menos 6 caracteres')
+    .withMessage('The password must be at least 6 characters')
 ]
 
-module.exports = { registrationValidationRules }
+const userUpdateValidationRules = [
+  body('email').trim().isEmail().withMessage('The email is not valid'),
+  body('password')
+    .isLength({ min: 6 })
+    .withMessage('The password must be at least 6 characters')
+]
+
+module.exports = { userValidationRules, userUpdateValidationRules }

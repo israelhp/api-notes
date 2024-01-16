@@ -1,10 +1,8 @@
 const userRepository = require('../../core/interfaces/userRepository')
-const bcrypt = require('bcrypt')
+const { encryptPassword } = require('../../utils/encryptPassword')
 
 const createUser = async (username, email, password) => {
-  // Hash de la contraseña antes de almacenarla
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+  const hashedPassword = await encryptPassword(password)
 
   // Crear nuevo usuario
   const newUser = await userRepository.createUser({
@@ -16,4 +14,15 @@ const createUser = async (username, email, password) => {
   return newUser
 }
 
-module.exports = { createUser }
+const updateUser = async (username, updatedUserData) => {
+  if (updatedUserData.password) {
+    updatedUserData.password = await encryptPassword(updatedUserData.password)
+  }
+
+  // Realizar la actualización en el repositorio
+  const updatedUser = await userRepository.updateUser(username, updatedUserData)
+
+  return updatedUser
+}
+
+module.exports = { createUser, updateUser }

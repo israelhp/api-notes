@@ -2,14 +2,20 @@ const router = require('express').Router()
 const userController = require('../../../app/controllers/userController')
 const { StatusCodes } = require('http-status-codes')
 const {
-  registrationValidationRules
+  userValidationRules,
+  userUpdateValidationRules
 } = require('../../../utils/validationRules')
 const validationMiddleware = require('../../middlewares/validationRequest')
 
 router.post(
-  '/register',
-  validationMiddleware(registrationValidationRules),
+  '/',
+  validationMiddleware(userValidationRules),
   userController.register
+)
+router.put(
+  '/:username',
+  validationMiddleware(userUpdateValidationRules),
+  userController.updateUser
 )
 router.get('/', (_request, response) => {
   response.status(StatusCodes.OK).json({
@@ -17,7 +23,7 @@ router.get('/', (_request, response) => {
     message: 'v1/users',
     data: {
       description:
-        'Esta ruta proporciona funcionalidades relacionadas con la gestión de usuarios en la aplicación. Permite realizar operaciones como la creación, recuperación, actualización y eliminación de usuarios, así como obtener información detallada sobre un usuario específico.',
+        'This enpoint provides functionality related to user management in the application. It allows you to perform operations such as creating, recovering, updating and deleting users, as well as obtaining detailed information about a specific user.',
       version: '1.0',
       documentation: ''
     }
