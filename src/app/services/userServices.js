@@ -1,10 +1,8 @@
 const userRepository = require('../../core/interfaces/userRepository')
-const bcrypt = require('bcrypt')
+const { encryptPassword } = require('../../utils/encryptPassword')
 
 const createUser = async (username, email, password) => {
-  // Hash de la contraseña antes de almacenarla
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+  const hashedPassword = await encryptPassword(password)
 
   // Crear nuevo usuario
   const newUser = await userRepository.createUser({
@@ -17,10 +15,8 @@ const createUser = async (username, email, password) => {
 }
 
 const updateUser = async (username, updatedUserData) => {
-  // Aquí puedes agregar lógica de validación o cualquier otra lógica de negocio necesaria.
   if (updatedUserData.password) {
-    const salt = await bcrypt.genSalt(10)
-    updatedUserData.password = await bcrypt.hash(updatedUserData.password, salt)
+    updatedUserData.password = await encryptPassword(updatedUserData.password)
   }
 
   // Realizar la actualización en el repositorio
