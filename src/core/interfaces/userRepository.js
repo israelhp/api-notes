@@ -17,6 +17,11 @@ class UserRepository {
     return UserModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
   }
 
+  static deleteUserByUsername = async (username) => {
+    const deleteUser = await UserModel.findOneAndDelete({ username })
+    console.log(deleteUser)
+  }
+
   static updateUser = async (username, updatedUserData) => {
     const updatedUser = await UserModel.findOneAndUpdate(
       { username },

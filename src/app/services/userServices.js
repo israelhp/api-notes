@@ -25,4 +25,9 @@ const updateUser = async (username, updatedUserData) => {
   return updatedUser
 }
 
-module.exports = { createUser, updateUser }
+const deleteUser = async (username) => {
+  // Puedes realizar cualquier lógica adicional aquí, antes de borrar el usuario
+  await userRepository.deleteUserByUsername(username)
+}
+
+module.exports = { createUser, updateUser, deleteUser }

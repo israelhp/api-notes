@@ -49,4 +49,23 @@ const updateUser = async (request, response) => {
   }
 }
 
-module.exports = { register, updateUser }
+const deleteUser = async (request, response) => {
+  try {
+    const { username } = request.params
+    await userServices.deleteUser(username)
+
+    return response.status(StatusCodes.NO_CONTENT).send()
+  } catch (error) {
+    const handledError = httpHandleError(error)
+    return response.status(handledError.statusCode).json({
+      success: false,
+      message: handledError.message,
+      data: {
+        name: handledError.name,
+        error
+      }
+    })
+  }
+}
+
+module.exports = { register, updateUser, deleteUser }

@@ -17,6 +17,7 @@ router.put(
   validationMiddleware(userUpdateValidationRules),
   userController.updateUser
 )
+router.delete('/:username', userController.deleteUser)
 router.get('/', (_request, response) => {
   response.status(StatusCodes.OK).json({
     success: true,
