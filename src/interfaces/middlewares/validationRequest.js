@@ -1,6 +1,6 @@
 // src/utils/validationMiddleware.js
 const { validationResult } = require('express-validator')
-
+const { StatusCodes } = require('http-status-codes')
 const validationMiddleware = (validationRules) => {
   return async (req, res, next) => {
     await Promise.all(
@@ -9,10 +9,12 @@ const validationMiddleware = (validationRules) => {
 
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(400).json({
+      return res.status(StatusCodes.OK).json({
         success: false,
-        message: 'Error de validación',
-        errors: errors.array()
+        message: 'Validation error',
+        data: {
+          errors: errors.array()
+        }
       })
     }
 
