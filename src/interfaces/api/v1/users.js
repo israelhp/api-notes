@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const userController = require('../../../app/controllers/userController')
+const { StatusCodes } = require('http-status-codes')
 const {
   registrationValidationRules
 } = require('../../../utils/validationRules')
@@ -10,16 +11,17 @@ router.post(
   validationMiddleware(registrationValidationRules),
   userController.register
 )
-router.use('/users', (request, response) => {
-  response.apiSuccess(
-    {
+router.get('/', (_request, response) => {
+  response.status(StatusCodes.OK).json({
+    success: true,
+    message: 'v1/users',
+    data: {
       description:
-        'Esta API te proporciona acceso a un conjunto de funciones para gestionar eficientemente tus tareas y proyectos. Organiza, supervisa y realiza un seguimiento de tus actividades de manera efectiva. Utiliza los diferentes endpoints para crear, actualizar, eliminar y obtener información sobre tus tareas.',
+        'Esta ruta proporciona funcionalidades relacionadas con la gestión de usuarios en la aplicación. Permite realizar operaciones como la creación, recuperación, actualización y eliminación de usuarios, así como obtener información detallada sobre un usuario específico.',
       version: '1.0',
       documentation: ''
-    },
-    'api-notes'
-  )
+    }
+  })
 })
 
 module.exports = router
