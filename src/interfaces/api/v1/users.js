@@ -2,14 +2,20 @@ const router = require('express').Router()
 const userController = require('../../../app/controllers/userController')
 const { StatusCodes } = require('http-status-codes')
 const {
-  registrationValidationRules
+  userValidationRules,
+  userUpdateValidationRules
 } = require('../../../utils/validationRules')
 const validationMiddleware = require('../../middlewares/validationRequest')
 
 router.post(
-  '/register',
-  validationMiddleware(registrationValidationRules),
+  '/',
+  validationMiddleware(userValidationRules),
   userController.register
+)
+router.put(
+  '/:username',
+  validationMiddleware(userUpdateValidationRules),
+  userController.updateUser
 )
 router.get('/', (_request, response) => {
   response.status(StatusCodes.OK).json({
