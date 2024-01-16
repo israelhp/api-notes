@@ -30,4 +30,15 @@ const deleteUser = async (username) => {
   await userRepository.deleteUserByUsername(username)
 }
 
-module.exports = { createUser, updateUser, deleteUser }
+const getUserByUsername = async (username) => {
+  const user = await userRepository.getUserByUsername(username)
+
+  const sanitizedUser = {
+    username: user.username,
+    email: user.email
+  }
+
+  return sanitizedUser
+}
+
+module.exports = { createUser, updateUser, deleteUser, getUserByUsername }

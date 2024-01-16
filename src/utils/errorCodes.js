@@ -14,6 +14,12 @@ const errorCodes = {
     message:
       'The user you are trying to update was not found. Check the user ID and make sure it exists on the system.'
   },
+  NOT_FOUND_ERROR: {
+    code: 110012,
+    name: 'NOT_FOUND_ERROR',
+    statusCode: StatusCodes.NOT_FOUND,
+    message: 'The resource was not found.'
+  },
   INTERNAL_SERVER_ERROR: {
     code: 500,
     name: 'INTERNAL_SERVER_ERROR',

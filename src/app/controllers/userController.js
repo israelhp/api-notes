@@ -68,4 +68,34 @@ const deleteUser = async (request, response) => {
   }
 }
 
-module.exports = { register, updateUser, deleteUser }
+const getUserByUsername = async (request, response) => {
+  try {
+    const { username } = request.params
+    const user = await userServices.getUserByUsername(username)
+
+    if (!user) {
+      return response.status(404).json({
+        success: false,
+        message: 'Usuario no encontrado'
+      })
+    }
+
+    return response.json({
+      success: true,
+      message: 'Usuario encontrado exitosamente',
+      data: { user }
+    })
+  } catch (error) {
+    const handledError = httpHandleError(error)
+    return response.status(handledError.statusCode).json({
+      success: false,
+      message: handledError.message,
+      data: {
+        name: handledError.name,
+        error
+      }
+    })
+  }
+}
+
+module.exports = { register, updateUser, deleteUser, getUserByUsername }

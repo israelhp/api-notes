@@ -18,6 +18,7 @@ router.put(
   userController.updateUser
 )
 router.delete('/:username', userController.deleteUser)
+router.get('/:username', userController.getUserByUsername)
 router.get('/', (_request, response) => {
   response.status(StatusCodes.OK).json({
     success: true,

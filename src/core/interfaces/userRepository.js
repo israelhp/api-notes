@@ -13,13 +13,24 @@ class UserRepository {
     return UserModel.findById(userId)
   }
 
+  static getUserByUsername = async (username) => {
+    const user = await UserModel.findOne({ username })
+
+    if (!user) {
+      const error = new Error('User not found')
+      error.code = 110012
+      throw error
+    }
+
+    return user
+  }
+
   static updateUserById = async (userId, updatedUserData) => {
     return UserModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
   }
 
   static deleteUserByUsername = async (username) => {
-    const deleteUser = await UserModel.findOneAndDelete({ username })
-    console.log(deleteUser)
+    await UserModel.findOneAndDelete({ username })
   }
 
   static updateUser = async (username, updatedUserData) => {
