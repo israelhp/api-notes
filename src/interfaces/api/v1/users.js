@@ -17,7 +17,7 @@ router.get('/', (_request, response) => {
     message: 'v1/users',
     data: {
       description:
-        'Esta ruta proporciona funcionalidades relacionadas con la gestión de usuarios en la aplicación. Permite realizar operaciones como la creación, recuperación, actualización y eliminación de usuarios, así como obtener información detallada sobre un usuario específico.',
+        'This enpoint provides functionality related to user management in the application. It allows you to perform operations such as creating, recovering, updating and deleting users, as well as obtaining detailed information about a specific user.',
       version: '1.0',
       documentation: ''
     }

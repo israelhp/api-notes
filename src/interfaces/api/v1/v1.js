@@ -9,7 +9,7 @@ router.use('/', (_request, response) => {
     message: 'v1',
     data: {
       description:
-        'Esta API te proporciona acceso a un conjunto de funciones para gestionar eficientemente tus tareas y proyectos. Organiza, supervisa y realiza un seguimiento de tus actividades de manera efectiva. Utiliza los diferentes endpoints para crear, actualizar, eliminar y obtener información sobre tus tareas.',
+        'This API provides you access to a set of functions to efficiently manage your tasks and projects. Organize, monitor and track your activities effectively. Use the different endpoints to create, update, delete and obtain information about your tasks.',
       version: '1.0',
       documentation: ''
     }
