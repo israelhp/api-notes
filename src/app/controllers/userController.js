@@ -73,16 +73,9 @@ const getUserByUsername = async (request, response) => {
     const { username } = request.params
     const user = await userServices.getUserByUsername(username)
 
-    if (!user) {
-      return response.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      })
-    }
-
     return response.json({
       success: true,
-      message: 'Usuario encontrado exitosamente',
+      message: 'User found successfully',
       data: { user }
     })
   } catch (error) {
@@ -98,4 +91,23 @@ const getUserByUsername = async (request, response) => {
   }
 }
 
-module.exports = { register, updateUser, deleteUser, getUserByUsername }
+const information = async (_request, response) => {
+  response.status(StatusCodes.OK).json({
+    success: true,
+    message: 'v1/users',
+    data: {
+      description:
+        'This enpoint provides functionality related to user management in the application. It allows you to perform operations such as creating, recovering, updating and deleting users, as well as obtaining detailed information about a specific user.',
+      version: '1.0',
+      documentation: ''
+    }
+  })
+}
+
+module.exports = {
+  register,
+  updateUser,
+  deleteUser,
+  getUserByUsername,
+  information
+}

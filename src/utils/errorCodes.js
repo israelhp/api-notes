@@ -20,6 +20,18 @@ const errorCodes = {
     statusCode: StatusCodes.NOT_FOUND,
     message: 'The resource was not found.'
   },
+  INVALID_CREDENTIALS: {
+    code: 110013,
+    name: 'INVALID_CREDENTIALS',
+    statusCode: StatusCodes.UNAUTHORIZED,
+    message: 'Invalid credentials. Please check your username and password.'
+  },
+  INVALID_TOKEN: {
+    code: 110004,
+    name: 'INVALID_TOKEN',
+    statusCode: StatusCodes.UNAUTHORIZED,
+    message: 'Invalid or expired token.'
+  },
   INTERNAL_SERVER_ERROR: {
     code: 500,
     name: 'INTERNAL_SERVER_ERROR',

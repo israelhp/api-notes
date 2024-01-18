@@ -1,8 +1,8 @@
 const userRepository = require('../../core/interfaces/userRepository')
-const { encryptPassword } = require('../../utils/encryptPassword')
+const passwordUtils = require('../../utils/passwordUtils')
 
 const createUser = async (username, email, password) => {
-  const hashedPassword = await encryptPassword(password)
+  const hashedPassword = await passwordUtils.encryptPassword(password)
 
   // Crear nuevo usuario
   const newUser = await userRepository.createUser({
@@ -16,7 +16,9 @@ const createUser = async (username, email, password) => {
 
 const updateUser = async (username, updatedUserData) => {
   if (updatedUserData.password) {
-    updatedUserData.password = await encryptPassword(updatedUserData.password)
+    updatedUserData.password = await passwordUtils.encryptPassword(
+      updatedUserData.password
+    )
   }
 
   // Realizar la actualización en el repositorio
