@@ -17,4 +17,15 @@ const userUpdateValidationRules = [
     .withMessage('The password must be at least 6 characters')
 ]
 
-module.exports = { userValidationRules, userUpdateValidationRules }
+const loginValidationRules = [
+  body('username').trim().notEmpty().withMessage('Username is required'),
+  body('password')
+    .isLength({ min: 6 })
+    .withMessage('The password must be at least 6 characters')
+]
+
+module.exports = {
+  userValidationRules,
+  userUpdateValidationRules,
+  loginValidationRules
+}
