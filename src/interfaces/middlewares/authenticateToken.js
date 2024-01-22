@@ -5,7 +5,6 @@ const authenticateToken = (request, response, next) => {
   try {
     const token = request.headers.authorization.split(' ')[1]
 
-    console.log(token)
     if (!token) {
       const error = new Error()
       error.code = 110004
@@ -23,7 +22,6 @@ const authenticateToken = (request, response, next) => {
     request.user = user
     next()
   } catch (error) {
-    console.log(error)
     const handledError = httpHandleError(error)
     return response.status(handledError.statusCode).json({
       success: false,

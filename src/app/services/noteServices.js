@@ -9,4 +9,14 @@ const createNote = async (title, content, userId) => {
   return newNote
 }
 
-module.exports = { createNote }
+const getUserNotes = async (userId) => {
+  const userNotes = await noteRepository.getNotesByUser(userId)
+  return userNotes
+}
+
+const getNoteById = async (userId, noteId) => {
+  const note = await noteRepository.getNoteById(userId, noteId)
+  return note
+}
+
+module.exports = { createNote, getUserNotes, getNoteById }
