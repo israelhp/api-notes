@@ -1,16 +1,43 @@
-# API Notes
+<div align="center">
+<img src="https://cdn-icons-png.flaticon.com/512/2599/2599636.png" height="50px" width="auto" />
+<h3>
+ API-NOTES
+</h3>
+</div>
 
-## Description
+<div align="center">
+    <a href="#" target="_blank">
+        Preview
+    </a>
+    <span>&nbsp;✦&nbsp;</span>
+    <a href="#-getting-started">
+        Getting Started
+    </a>
+    <span>&nbsp;✦&nbsp;</span>
+    <a href="#-commands">
+        Commands
+    </a>
+    <span>&nbsp;✦&nbsp;</span>
+    <a href="#-license">
+        License
+    </a>
+</div>
+<div align="center">
 
-API Notes is a task management application based on an API developed with Node.js and Express. It allows users to perform CRUD (Create, Read, Update, Delete) operations on notes.
+![GitHub License](https://img.shields.io/github/license/israelhp/api-notes)
+![GitHub Repo stars](https://img.shields.io/github/stars/israelhp/api-notes)
+![GitHub forks](https://img.shields.io/github/forks/israelhp/api-notes)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/israelhp/api-notes)
 
-## Technologies Used
+</div>
 
-- Node.js
-- Express
-- MongoDB (or the database of your choice)
+## 🛠️ Stack
 
-## Key Features
+- [**Node.js**](https://nodejs.org/en)
+- [**Express**](https://expressjs.com/)
+- [**MongoDB**](https://www.mongodb.com/)
+
+### Key Features
 
 - Create new notes
 - Retrieve all notes
@@ -18,19 +45,19 @@ API Notes is a task management application based on an API developed with Node.j
 - Update an existing note
 - Delete a note
 
-## Installation
+## 🚀 Getting Started
 
 1. Clone this repository.
 2. Run `npm install` to install dependencies.
 3. Configure the connection to your MongoDB database in the `.env` file.
 4. Run `npm start` to start the server.
 
-## Usage
+### Usage
 
 - Access the API through `http://localhost:3000/api-notes`.
 - Use tools like Postman or cURL to interact with the API endpoints.
 
-## Project Structure
+## 🛠️ Project Structure
 
 ```
 /src
@@ -40,6 +67,9 @@ API Notes is a task management application based on an API developed with Node.j
 |   |
 |   |-- /services
 |       |-- noteService.js
+|
+|-- /config
+|   |-- db.js
 |
 |-- /core
 |   |-- /entities
@@ -51,9 +81,9 @@ API Notes is a task management application based on an API developed with Node.j
 |-- /interfaces
 |   |-- /api
 |   |   |-- expressRouter.js
-|
-|-- /config
-|   |-- config.js
+|   |
+|   |-- /middlewares
+|   |   |-- expressRouter.js
 |
 |-- /utils
 |   |-- helpers.js
@@ -62,14 +92,20 @@ API Notes is a task management application based on an API developed with Node.j
 |-- server.js
 ```
 
-## Diagram
+### Diagram
 
 ![Diagrama](/docs/diagram.png)
 
-## Licencia
+## 🔑 License
 
 This project is under the MIT License - see the [LICENSE](LICENSE) file for more details.
 
-## Contacto
+## 🧞 Commands
+
+|     | Command          | Action                                       |
+| :-- | :--------------- | :------------------------------------------- |
+| ⚙️  | `dev` or `start` | Starts local dev server at `localhost:3000`. |
+
+## Contact
 
 You can reach me at [israelhurtarte@gmail.com].

@@ -1,4 +1,4 @@
-const noteRepository = require('../../core/interfaces/noteRepository')
+const noteRepository = require('../../core/repositories/noteRepository')
 
 const createNote = async (title, content, userId) => {
   const newNote = await noteRepository.createNote({

@@ -1,4 +1,4 @@
-const userRepository = require('../../core/interfaces/userRepository')
+const userRepository = require('../../core/repositories/userRepository')
 const passwordUtils = require('../../utils/passwordUtils')
 
 const createUser = async (username, email, password) => {

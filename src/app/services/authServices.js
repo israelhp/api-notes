@@ -1,5 +1,5 @@
 // services/loginService.js
-const userRepository = require('../../core/interfaces/userRepository')
+const userRepository = require('../../core/repositories/userRepository')
 const passwordUtils = require('../../utils/passwordUtils')
 const jwtUtils = require('../../utils/jwtUtils')
 
