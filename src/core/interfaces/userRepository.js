@@ -5,14 +5,6 @@ class UserRepository {
     return UserModel.create(userData)
   }
 
-  static getAllUsers = async () => {
-    return UserModel.find()
-  }
-
-  static getUserById = async (userId) => {
-    return UserModel.findById(userId)
-  }
-
   static getUserByUsername = async (username) => {
     const user = await UserModel.findOne({ username })
 
@@ -23,10 +15,6 @@ class UserRepository {
     }
 
     return user
-  }
-
-  static updateUserById = async (userId, updatedUserData) => {
-    return UserModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
   }
 
   static deleteUserByUsername = async (username) => {
@@ -47,18 +35,6 @@ class UserRepository {
     }
 
     return updatedUser
-  }
-
-  static deleteUserById = async (userId) => {
-    return UserModel.findByIdAndDelete(userId)
-  }
-
-  static findUserByEmail = async (email) => {
-    return UserModel.findOne({ email })
-  }
-
-  static validateLoginCredentials = async (email, password) => {
-    return UserModel.findOne({ email, password })
   }
 }
 

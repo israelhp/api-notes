@@ -20,7 +20,10 @@ const login = async (username, password) => {
   }
 
   // Generar token JWT
-  const token = jwtUtils.generateToken({ username: user.username })
+  const token = jwtUtils.generateToken({
+    username: user.username,
+    userId: user._id
+  })
 
   return token
 }

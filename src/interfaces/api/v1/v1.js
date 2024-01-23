@@ -1,10 +1,12 @@
 const router = require('express').Router()
 const userRouter = require('./users')
 const authRouter = require('./auth')
+const noteRouter = require('./notes')
 const { StatusCodes } = require('http-status-codes')
 
 router.use('/users', userRouter)
 router.use('/auth', authRouter)
+router.use('/notes', noteRouter)
 router.use('/', (_request, response) => {
   response.status(StatusCodes.OK).json({
     success: true,
