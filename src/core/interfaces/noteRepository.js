@@ -22,6 +22,20 @@ class NoteRepository {
 
     return note
   }
+
+  static updateNote = async (userId, noteId, updatedFields) => {
+    const note = await Note.findOneAndUpdate(
+      { _id: noteId, userId },
+      { $set: updatedFields },
+      { new: true }
+    )
+    if (!note) {
+      const notFoundError = new Error('Note not found')
+      notFoundError.code = 110012
+      throw notFoundError
+    }
+    return note
+  }
 }
 
 module.exports = NoteRepository

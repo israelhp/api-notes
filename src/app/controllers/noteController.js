@@ -71,6 +71,33 @@ const getNoteById = async (request, response) => {
   }
 }
 
+const updateNote = async (request, response) => {
+  try {
+    const { userId } = request.user
+    const { title, content, noteId } = request.body
+
+    const updatedNote = await noteServices.updateNote(userId, noteId, {
+      title,
+      content
+    })
+
+    return response.json({
+      success: true,
+      message: 'Note updated successfully',
+      data: { note: updatedNote }
+    })
+  } catch (error) {
+    const handledError = httpHandleError(error)
+    return response.status(handledError.statusCode).json({
+      success: false,
+      message: handledError.message,
+      data: {
+        name: handledError.name
+      }
+    })
+  }
+}
+
 const information = async (_request, response) => {
   response.status(StatusCodes.OK).json({
     success: true,
@@ -83,4 +110,4 @@ const information = async (_request, response) => {
   })
 }
 
-module.exports = { information, createNote, getNotes, getNoteById }
+module.exports = { information, createNote, getNotes, getNoteById, updateNote }

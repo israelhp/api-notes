@@ -19,4 +19,13 @@ const getNoteById = async (userId, noteId) => {
   return note
 }
 
-module.exports = { createNote, getUserNotes, getNoteById }
+const updateNote = async (userId, noteId, updatedFields) => {
+  const updatedNote = await noteRepository.updateNote(
+    userId,
+    noteId,
+    updatedFields
+  )
+  return updatedNote
+}
+
+module.exports = { createNote, getUserNotes, getNoteById, updateNote }
