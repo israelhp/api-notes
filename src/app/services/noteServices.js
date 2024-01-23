@@ -28,4 +28,14 @@ const updateNote = async (userId, noteId, updatedFields) => {
   return updatedNote
 }
 
-module.exports = { createNote, getUserNotes, getNoteById, updateNote }
+const deleteNote = async (userId, noteId) => {
+  await noteRepository.deleteNote(userId, noteId)
+}
+
+module.exports = {
+  createNote,
+  getUserNotes,
+  getNoteById,
+  updateNote,
+  deleteNote
+}

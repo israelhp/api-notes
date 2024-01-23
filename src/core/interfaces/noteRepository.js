@@ -36,6 +36,10 @@ class NoteRepository {
     }
     return note
   }
+
+  static deleteNote = async (userId, noteId) => {
+    await Note.findOneAndDelete({ _id: noteId, userId })
+  }
 }
 
 module.exports = NoteRepository

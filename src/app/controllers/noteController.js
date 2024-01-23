@@ -98,16 +98,44 @@ const updateNote = async (request, response) => {
   }
 }
 
+const deleteNote = async (request, response) => {
+  try {
+    const { userId } = request.user
+    const { noteId } = request.params
+
+    await noteServices.deleteNote(userId, noteId)
+
+    return response.status(StatusCodes.NO_CONTENT).send()
+  } catch (error) {
+    const handledError = httpHandleError(error)
+    return response.status(handledError.statusCode).json({
+      success: false,
+      message: handledError.message,
+      data: {
+        name: handledError.name
+      }
+    })
+  }
+}
+
 const information = async (_request, response) => {
   response.status(StatusCodes.OK).json({
     success: true,
     message: 'v1/notes',
     data: {
-      description: '',
+      description:
+        'This point provides functionality related to notes management in the application. It allows you to perform operations such as creating, recovering, updating and deleting notes, as well as obtaining detailed information about a specific note.',
       version: '1.0',
       documentation: ''
     }
   })
 }
 
-module.exports = { information, createNote, getNotes, getNoteById, updateNote }
+module.exports = {
+  information,
+  createNote,
+  getNotes,
+  getNoteById,
+  updateNote,
+  deleteNote
+}
